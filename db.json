@@ -27,7 +27,7 @@
     {
       "id": "fd08",
       "duracaoEmSegundos": 2,
-      "descricao": "teste",
+      "descricao": "Teste 2",
       "projeto": {
         "id": "1",
         "nome": "Alura Tracker 3.0.1"
