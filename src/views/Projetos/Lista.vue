@@ -43,7 +43,6 @@ import { useStore } from "@/store";
 import { computed, defineComponent } from "vue";
 import { OBTER_PROJETOS, REMOVER_PROJETOS } from "@/store/tipo-acoes";
 import useNotificador from '@/hooks/notificador'
-import { TipoNotificacao } from "@/interfaces/INotificacao";
 
 export default defineComponent({
   name: "Lista",
@@ -58,7 +57,7 @@ export default defineComponent({
     const { notificar } = useNotificador()
     store.dispatch(OBTER_PROJETOS)
     return {
-      projetos: computed(() => store.state.projetos),
+      projetos: computed(() => store.state.projetoModule.projetos),
       store,
       notificar
     }

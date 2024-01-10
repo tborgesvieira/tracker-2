@@ -4,5 +4,25 @@
       "id": "1",
       "nome": "Alura Tracker 3.0.1"
     }
+  ],
+  "tarefas": [
+    {
+      "id": "1",
+      "duracaoEmSegundos": 120,
+      "descricao": "Configuração do ambiente",
+      "projeto": {
+        "id": "1",
+        "nome": "Alura Tracker 3.0.1"
+      }
+    },
+    {
+      "id": "85a4",
+      "duracaoEmSegundos": 2,
+      "descricao": "Teste 1",
+      "projeto": {
+        "id": "1",
+        "nome": "Alura Tracker 3.0.1"
+      }
+    }
   ]
 }
