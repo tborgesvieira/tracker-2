@@ -1,9 +1,7 @@
 # alura-tracker
 
 ## Node
-```
-v16.20.2
-```
+**v16.20.2**
 
 ## Project setup
 ```
@@ -24,6 +22,10 @@ npm run build
 ```
 npm run lint
 ```
+
+### json-server
+Utilizado para criar a api de comunicação para o desenvolvimento
+[Referências](https://github.com/typicode/json-server)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
