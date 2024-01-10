@@ -41,20 +41,26 @@
 <script lang="ts">
 import { useStore } from "@/store";
 import { computed, defineComponent } from "vue";
-import { EXCLUIR_PROJETO } from '@/store/tipo-mutacoes'
+import { OBTER_PROJETOS, REMOVER_PROJETOS } from "@/store/tipo-acoes";
+import useNotificador from '@/hooks/notificador'
+import { TipoNotificacao } from "@/interfaces/INotificacao";
 
 export default defineComponent({
   name: "Lista",
   methods: {
     excluir (id: string) {
-      this.store.commit(EXCLUIR_PROJETO, id)
+      //this.store.commit(EXCLUIR_PROJETO, id)
+      this.store.dispatch(REMOVER_PROJETOS, id)
     }
   },
   setup () {
     const store = useStore()
+    const { notificar } = useNotificador()
+    store.dispatch(OBTER_PROJETOS)
     return {
       projetos: computed(() => store.state.projetos),
-      store
+      store,
+      notificar
     }
   }
 });
