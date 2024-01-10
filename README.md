@@ -1,5 +1,10 @@
 # alura-tracker
 
+## Node
+```
+v16.20.2
+```
+
 ## Project setup
 ```
 npm install
