@@ -4,6 +4,14 @@
     <Box v-if="semTarefas">
       Você não está muito produtivo hoje <span class="has-text-weight-bold">:(</span>
     </Box>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input class="input" type="text" placeholder="Digite para filtrar" v-model="filtro">
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </p>
+    </div>
     <Tarefa v-for="(tarefa, index) in tarefas" :tarefa="tarefa" :key="index" @aoTarefaClicada="selecionarTarefa" />
     <div class="modal" :class="{ 'is-active': tarefaSelecionada }" v-if="tarefaSelecionada">
       <div class="modal-background"></div>
@@ -28,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import Formulario from "../components/Formulario.vue";
 import Tarefa from "../components/Tarefa.vue";
 import Box from "../components/Box.vue";
@@ -58,9 +66,9 @@ export default defineComponent({
     fecharModal() {
       this.tarefaSelecionada = null;
     },
-    salvarTarefaSelecionada(){
+    salvarTarefaSelecionada() {
       this.store.dispatch(ALTERAR_TAREFAS, this.tarefaSelecionada)
-        .then(()=>this.fecharModal())
+        .then(() => this.fecharModal())
     }
   },
   computed: {
@@ -72,9 +80,19 @@ export default defineComponent({
     const store = useStore()
     store.dispatch(OBTER_TAREFAS)
     store.dispatch(OBTER_PROJETOS)
-    return {      
-      tarefas: computed(() => store.state.tarefaModule.tarefas),
-      store
+
+    const filtro = ref("")
+
+    const tarefas = computed(() => 
+          store.state.tarefaModule.tarefas?.filter(
+              (t) => !filtro.value || t.descricao.toLowerCase().includes(filtro.value.toLowerCase())
+          )
+        )
+
+    return {
+      tarefas,
+      store,
+      filtro
     }
   }
 });
